@@ -12,6 +12,7 @@ library(rio)
 library(knitr)
 setwd("~/Desktop/data_science/ReproData/")
 opts_chunk$set(echo = TRUE, results = 'hold')
+
 data <- read.csv("activity.csv")
 data$date <- as.POSIXct(data$date, format="%Y-%m-%d")
 data      <- data.frame(date=data$date,weekday=tolower(weekdays(data$date)),
@@ -23,7 +24,9 @@ data      <- data.frame(date=data$date,weekday=data$weekday,daytype=data$daytype
 export(data,"hw1.csv")
 ```
 
-Processed data set to make it easier to answer all questions, specifically for "dates", in addition to those having to deal with "weekday" and "weekend". I saved the tidy data in a new file called hw1.csv that I will read in for the rest of the analysis. 
+Processed data set to make it easier to answer all questions, specifically for "dates", 
+in addition to those having to deal with "weekday" and "weekend". I saved the tidy data 
+in a new file called hw1.csv that I will read in for the rest of the analysis. 
 
 ## What is the mean total number of steps taken per day?
 ```{r total steps}
@@ -41,6 +44,7 @@ hist(total.steps$steps,
      ylim=c(0, 20), 
      main="Histogram: Total Daily Steps (-NA)")
 ```
+![1](https://github.com/taraxmeyer/ReproData_PA1/blob/master/figure/PA1-1.png)
 
 Find the mean and median daily steps taken. See summary OR:
 ```{r ts mm}
@@ -68,6 +72,7 @@ plot(mean_steps$interval,
      ylab="Average Steps", 
      main="Time-Series: Average Steps per Interval (-NA)")
 ```
+![2](https://github.com/taraxmeyer/ReproData_PA1/blob/master/figure/PA1-2.png)
 
 Look at the interval with the maximum steps.
 ```{r max int}
@@ -96,6 +101,7 @@ hist(total.steps$steps,
      ylim=c(0, 30), 
      main="Histogram: Total Daily Steps (NA=Mean)")
 ```
+![3](https://github.com/taraxmeyer/ReproData_PA1/blob/master/figure/PA1-3.png)
 
 Calculate the mean and median of total daily steps.
 ```{r mean and median total steps}
@@ -134,4 +140,4 @@ xyplot(mean~interval|daytype,mean_data,
        ylab="number of steps", 
        layout=c(1,2))
 ```
-
+![4](https://github.com/taraxmeyer/ReproData_PA1/blob/master/figure/PA1-4.png)
